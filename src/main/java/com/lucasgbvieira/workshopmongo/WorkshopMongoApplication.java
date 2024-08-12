@@ -10,4 +10,6 @@ public class WorkshopMongoApplication {
         SpringApplication.run(WorkshopMongoApplication.class, args);
     }
 
+
+
 }
