@@ -3,13 +3,14 @@ package com.lucasgbvieira.workshopmongo.config;
 import com.lucasgbvieira.workshopmongo.domain.Post;
 import com.lucasgbvieira.workshopmongo.domain.User;
 import com.lucasgbvieira.workshopmongo.dto.AuthorDTO;
+import com.lucasgbvieira.workshopmongo.dto.CommentDTO;
 import com.lucasgbvieira.workshopmongo.repository.PostRepository;
 import com.lucasgbvieira.workshopmongo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 
-import java.sql.Time;
+
 import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.TimeZone;
@@ -51,6 +52,14 @@ public class Instantiation implements CommandLineRunner {
                 "Cheguei!",
                 "Foi muito cansativo...",
                 new AuthorDTO(maria));
+
+        CommentDTO comment1 = new CommentDTO("Boa viagem, brother!", sdf.parse("21/03/2024"), new AuthorDTO(alex));
+        CommentDTO comment2 = new CommentDTO("Aproveite", sdf.parse("21/03/2024"), new AuthorDTO(bob));
+        CommentDTO comment3 = new CommentDTO("Tenha um ótimo dia!", sdf.parse("21/03/2024"), new AuthorDTO(bob));
+
+        post1.getComments().addAll(Arrays.asList(comment1, comment3));
+        post2.getComments().add(comment2);
+
 
         postRepository.saveAll(Arrays.asList(post1, post2));
 
